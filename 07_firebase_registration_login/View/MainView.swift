@@ -9,7 +9,30 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            
+            Image("heartdark")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: UIScreen.main.bounds.height / 3)
+                .padding(.vertical)
+                .shadow(radius: 15)
+                
+                
+            
+            ZStack {
+                
+               // Login View...
+                Login()
+                
+                
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color("secondbg")
+                            .clipShape(CustomCorner(corners: [.topLeft, .topRight]))
+                            .ignoresSafeArea(.all, edges: .bottom))
+        }
+        .background(Color("bg").ignoresSafeArea(.all, edges: .all))
     }
 }
 

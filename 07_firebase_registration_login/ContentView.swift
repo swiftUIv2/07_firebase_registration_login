@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var accountCreation = AccountCreationViewModel()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        MainView()
+        // setting it as environment Object
+        // so that we can use it in all the sub Views...
+            .environmentObject(accountCreation)
     }
 }
 
