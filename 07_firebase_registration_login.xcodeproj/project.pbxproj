@@ -19,6 +19,10 @@
 		B5785F5925A49C5A00200856 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5785F5825A49C5A00200856 /* ContentView.swift */; };
 		B5785F5B25A49C5C00200856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5785F5A25A49C5C00200856 /* Assets.xcassets */; };
 		B5785F5E25A49C5C00200856 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5785F5D25A49C5C00200856 /* Preview Assets.xcassets */; };
+		B5A087C125A72DEF00841445 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A087C025A72DEF00841445 /* ImagePicker.swift */; };
+		B5A087C425A75E5400841445 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A087C325A75E5400841445 /* LoadingScreen.swift */; };
+		B5F5516825A5E7060028DCA7 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5516725A5E7060028DCA7 /* Register.swift */; };
+		B5F5516B25A60E5D0028DCA7 /* ImageRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F5516A25A60E5D0028DCA7 /* ImageRegister.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +37,10 @@
 		B5785F5A25A49C5C00200856 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5785F5D25A49C5C00200856 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B5785F5F25A49C5C00200856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5A087C025A72DEF00841445 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		B5A087C325A75E5400841445 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		B5F5516725A5E7060028DCA7 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
+		B5F5516A25A60E5D0028DCA7 /* ImageRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRegister.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +63,10 @@
 				B5536B1E25A4C332001342C0 /* MainView.swift */,
 				B5536B2125A4CE3E001342C0 /* CustomCorner.swift */,
 				B5536B2425A4D40E001342C0 /* Login.swift */,
+				B5F5516725A5E7060028DCA7 /* Register.swift */,
+				B5F5516A25A60E5D0028DCA7 /* ImageRegister.swift */,
+				B5A087C025A72DEF00841445 /* ImagePicker.swift */,
+				B5A087C325A75E5400841445 /* LoadingScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -184,11 +196,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5A087C425A75E5400841445 /* LoadingScreen.swift in Sources */,
 				B5785F5925A49C5A00200856 /* ContentView.swift in Sources */,
 				B5536B2525A4D40E001342C0 /* Login.swift in Sources */,
 				B5536B2225A4CE3E001342C0 /* CustomCorner.swift in Sources */,
+				B5A087C125A72DEF00841445 /* ImagePicker.swift in Sources */,
 				B5536B1F25A4C332001342C0 /* MainView.swift in Sources */,
+				B5F5516825A5E7060028DCA7 /* Register.swift in Sources */,
 				B5785F5725A49C5A00200856 /* _7_firebase_registration_loginApp.swift in Sources */,
+				B5F5516B25A60E5D0028DCA7 /* ImageRegister.swift in Sources */,
 				B5536B2825A4D4E5001342C0 /* AccountCreationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

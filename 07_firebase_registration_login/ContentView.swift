@@ -12,10 +12,17 @@ struct ContentView: View {
     @StateObject var accountCreation = AccountCreationViewModel()
     
     var body: some View {
-        MainView()
-        // setting it as environment Object
-        // so that we can use it in all the sub Views...
-            .environmentObject(accountCreation)
+        ZStack {
+            MainView()
+            // setting it as environment Object
+            // so that we can use it in all the sub Views...
+                .environmentObject(accountCreation)
+            
+            if accountCreation.isLoading {
+                
+                LoadingScreen()
+            }
+        }
     }
 }
 
