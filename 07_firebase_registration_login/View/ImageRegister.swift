@@ -22,7 +22,7 @@ struct ImageRegister: View {
                 Spacer()
                 
                 if check() {
-                    Button(action: {}, label: {
+                    Button(action: accountCreation.signUp, label: {
                         Text("Create")
                             .fontWeight(.heavy)
                             .foregroundColor(Color("bg"))

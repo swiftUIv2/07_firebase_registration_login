@@ -61,6 +61,8 @@ struct Login: View {
                 .cornerRadius(8)
             })
             .padding(.top)
+            .disabled((accountCreation.code != "" && accountCreation.phNumber != "") ? false : true)
+            .opacity((accountCreation.code != "" && accountCreation.phNumber != "") ? 1 : 0.6)
             
             Spacer(minLength: 0)
         }

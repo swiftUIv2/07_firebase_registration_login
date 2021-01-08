@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct Register: View {
     @EnvironmentObject var accountCreation : AccountCreationViewModel
+    @State var manager = CLLocationManager()
     
     
     var body: some View {
@@ -36,7 +38,7 @@ struct Register: View {
             HStack(spacing: 15){
                 HStack(spacing: 15){
                     TextField("Location", text: $accountCreation.location)
-                    Button(action: {}, label: {
+                    Button(action: {manager.requestWhenInUseAuthorization()}, label: {
                         Image(systemName: "mappin.circle.fill")
                             .foregroundColor(Color("bg"))
                     })
@@ -63,7 +65,7 @@ struct Register: View {
                 .shadow(color: Color.black.opacity(0.05), radius: 5, x: -5, y: -5)
                 .padding(.vertical)
             
-            Button(action: {}, label: {
+            Button(action: {accountCreation.pageNumber = 2}, label: {
                 HStack {
                     
                     Spacer(minLength: 0)
@@ -79,8 +81,16 @@ struct Register: View {
                 .cornerRadius(8)
             })
             
+            //disabling Button...
+            .opacity((accountCreation.name != "" && accountCreation.age != "" && accountCreation.bio != "" && accountCreation.location != "" ) ? 1 : 0.6 )
+            
+            .disabled((accountCreation.name != "" && accountCreation.age != "" && accountCreation.bio != "" && accountCreation.location != "") ? false : true )
+            
         }
         .padding(.horizontal)
+        .onAppear(perform: {
+            manager.delegate = accountCreation
+        })
     }
 }
 

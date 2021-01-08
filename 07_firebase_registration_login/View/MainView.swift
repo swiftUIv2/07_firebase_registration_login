@@ -33,7 +33,7 @@ struct MainView: View {
                         .transition(.move(edge: .trailing))
                 }
                 else {
-                    Register()
+                    ImageRegister()
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

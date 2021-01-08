@@ -7,8 +7,12 @@
 
 import SwiftUI
 import Firebase
+import CoreLocation
 
-class AccountCreationViewModel: ObservableObject {
+// Getting user location...
+
+
+class AccountCreationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     // User Details...
     @Published var name = ""
@@ -38,6 +42,9 @@ class AccountCreationViewModel: ObservableObject {
     // OTP credentials...
     @Published var CODE = ""
     
+    // Status...
+    @AppStorage("Log_Status") var status = false 
+    
     func login(){
         
         // getting OTP...
@@ -48,7 +55,7 @@ class AccountCreationViewModel: ObservableObject {
         isLoading.toggle()
         
         PhoneAuthProvider.provider().verifyPhoneNumber("+" + code + phNumber, uiDelegate: nil) { (CODE, err) in
-          
+            
             self.isLoading.toggle()
             if err != nil {
                 self.alertMsg = err!.localizedDescription
@@ -100,6 +107,87 @@ class AccountCreationViewModel: ObservableObject {
             
             // Presenting...
             UIApplication.shared.windows.first?.rootViewController?.present(alertView, animated: true, completion: nil)
+        }
+    }
+    
+    func signUp() {
+        let storage = Storage.storage().reference()
+        
+        let ref = storage.child("profile_Pics").child(Auth.auth().currentUser!.uid)
+        
+        // Image urls...
+        var urls: [String] = []
+        
+        for index in images.indices {
+            
+            self.isLoading.toggle()
+            ref.child("img\(index)").putData(images[index], metadata: nil) { (_, err) in
+                if err != nil {
+                    self.alertMsg = err!.localizedDescription
+                    self.alert.toggle()
+                    return
+                }
+                
+                ref.child("img\(index)").downloadURL { (url, _) in
+                    guard let imageUrl = url else {return}
+                    
+                    // appending urls ....
+                    urls.append("\(imageUrl)")
+                    
+                    // checking all images are uploaded...
+                    if urls.count == self.images.count {
+                        
+                        // Update DB...
+                        self.RegistrationUser(urls: urls)
+                    }
+                }
+            }
+        }
+    }
+    
+    func RegistrationUser(urls: [String]){
+        let db = Firestore.firestore()
+        db.collection("Users").document(Auth.auth().currentUser!.uid).setData([
+        
+            "userName": self.name,
+            "bio": self.bio,
+            "location": self.age,
+            "imageUrls": urls
+            
+        ]) { (err) in
+            
+            if err != nil {
+                self.alertMsg = err!.localizedDescription
+                self.alert.toggle()
+                return
+            }
+            
+            //Success
+            self.isLoading.toggle()
+            self.status = true
+            
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let last = locations.last!
+        
+        CLGeocoder().reverseGeocodeLocation(last){ (places, _) in
+            guard let placeMarks = places else {return}
+            
+            self.location = (placeMarks.first?.name ?? "") + ", " + (placeMarks.first?.locality ?? "")
+            
+        }
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
+        // DO Something...
+        
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if manager.authorizationStatus == .authorizedWhenInUse {
+            manager.requestLocation()
         }
     }
 }
